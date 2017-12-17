@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function products()
+    {
+        $godowns = \App\godowns::with('products')->get();
+        return view('products',compact('godowns'));
+    }
 }
