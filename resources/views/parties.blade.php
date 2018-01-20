@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Products</div>
+                <div class="panel-heading">Parties</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -14,26 +14,26 @@
                         </div>
                     @endif
 
-                    <!-- {{$godowns}} -->
                     <table id="example" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Qty</th>
-                                <th>Godown</th>
-                                <th>Location</th>
+                                <th>Name</th>
+                                <th>Bill</th>
+                                <th>Pending Amount</th>
                             </tr>
                         </thead>    
                         <tbody>
-                            @foreach ($godowns as $godown)
-                                @foreach($godown->products as $product)
+                            @foreach ($parties as $party)
                                     <tr>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->qty}}</td>
-                                        <td>{{$godown->name}}</td>    
-                                        <td>{{$godown->location}}</td>
-                                    </tr>
+                                        <td><a href={{url('/')}}/party/{{$party->id}}>{{$party->name}}</a></td>
+                                    <?php $bills = "" ;$total=0;?>
+                                @foreach($party->bills as $bill)
+                                    <?php $bills .= $bill->id."," ; ?>
+                                    <?php $total += $bill->total - $bill->paid; ?>
                                 @endforeach
+                                        <td>{{substr($bills, 0, -1)}}</td>
+                                        <td>{{$total}}</td>    
+                                    </tr>
                             @endforeach
                         </tbody>
                     </table>

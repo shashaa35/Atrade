@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/products', 'HomeController@products')->name('products');
+
+Route::get('/parties', 'HomeController@parties')->name('parties');
+
+Route::get('/party/{id}', 'HomeController@party')->name('party');

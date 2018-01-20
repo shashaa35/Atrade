@@ -24,6 +24,9 @@ class CreateBillsTable extends Migration
             
 
             $table->string('total')->nullable();
+            $table->string('paid')->nullable();
+            $table->string('status')->nullable();
+
             $table->string('remarks')->nullable();
             
             $table->timestamps();

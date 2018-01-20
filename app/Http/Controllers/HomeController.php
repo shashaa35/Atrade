@@ -31,4 +31,16 @@ class HomeController extends Controller
         $godowns = \App\godowns::with('products')->get();
         return view('products',compact('godowns'));
     }
+
+    public function parties()
+    {
+        $parties = \App\party::with('bills')->get();
+        return view('parties',compact('parties'));
+    }
+
+    public function party ($id)
+    {
+        $party = \App\party::where('id',$id)->with('bills')->first();
+        return view('party',compact('party'));
+    }
 }
